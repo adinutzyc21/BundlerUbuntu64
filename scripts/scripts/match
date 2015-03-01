@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MATCHKEYS=$1
+OPTION=$2
+
+sed 's/\.jpg$/\.key/' list_tmp.txt > list_keys.txt
+sleep 1
+printf "$MATCHKEYS list_keys.txt matches.init.txt\n"
+$MATCHKEYS list_keys.txt matches.init.txt

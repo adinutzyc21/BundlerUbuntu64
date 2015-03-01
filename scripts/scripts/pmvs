@@ -1,0 +1,30 @@
+#!/bin/bash
+
+BUNDLER_BIN=$1
+BUNDLE2PMVS=$2
+
+$BUNDLE2PMVS list.txt bundle/bundle.out 
+
+# go to the pmvs folder, will need to cd ..
+cd pmvs/ 
+
+# edit the prep_pmvs.sh file - this is cool!
+line="BUNDLER_BIN_PATH='$BUNDLER_BIN'"
+line=${line//\//\\\/}
+line=${line//\'}
+
+# replace the 4th line in the script
+# sed '4s/.*/BUNDLER_BIN_PATH=\/home\/adina\/Installs\/bundler\/bin/' prep_pmvs.sh > prep_pmvs2.sh
+
+sed "4s/.*/$line/" prep_pmvs.sh > prep_pmvs2.sh
+
+# remove and replace
+rm prep_pmvs.sh
+mv prep_pmvs2.sh prep_pmvs.sh
+chmod +x prep_pmvs.sh 
+
+# go back to the original folder
+cd ..
+
+# run prep_pmvs
+./pmvs/prep_pmvs.sh 

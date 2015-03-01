@@ -1,0 +1,16 @@
+#!/bin/bash
+IMAGE_DIR=$1
+EXTRACT_FOCAL=$2
+
+# Rename ".JPG" to ".jpg"
+for d in `ls -1 $IMAGE_DIR | egrep ".JPG$"`
+do 
+    mv $IMAGE_DIR/$d $IMAGE_DIR/`echo $d | sed 's/\.JPG/\.jpg/'`
+done
+
+# Create the list of images (list_tmp contains a list of all the sorted image names)
+find $IMAGE_DIR -maxdepth 1 | egrep ".jpg$" | sort > list_tmp.txt 
+# Create a list of images in prepare/list.txt containing their focal length in pixels (if focal_lenth => imname 0 focal_length)
+$EXTRACT_FOCAL list_tmp.txt
+# move list.txt to main folder
+cp prepare/list.txt .

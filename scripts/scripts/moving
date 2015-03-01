@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# move to folder
+
+FOLDER="$1"
+if [ "$FOLDER" = "1" ] ; then
+    FOLDER="sift_lowe"
+else 
+    if [ "$FOLDER" = "2" ] ; then
+        FOLDER="sift_vlfeat"
+    else 
+        if [ "$FOLDER" = "3" ] ; then
+            FOLDER="open_surf"
+        fi
+    fi
+fi
+    
+rm -f -r $FOLDER
+mkdir -p $FOLDER
+
+shopt -s extglob  # to enable extglob
+cp -ar !(*.jpg|sift_lowe|sift_vlfeat|open_surf) $FOLDER/
+shopt -u extglob

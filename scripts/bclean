@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#clean everything up
+rm -f -r bundle prepare pmvs
+rm -f *.gz *.pgm *.txt *.key *.sh

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CMVS=$1
+
+$CMVS/cmvs pmvs/
+$CMVS/genOption pmvs/
+$CMVS/pmvs2 pmvs/ option-0000

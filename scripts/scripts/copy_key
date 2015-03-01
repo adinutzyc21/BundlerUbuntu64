@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# copy files from folder to curent folder
+
+FOLDER="$1"
+if [ "$FOLDER" = "1" ] ; then
+    FOLDER="sift_lowe/."
+else 
+    if [ "$FOLDER" = "2" ] ; then
+        FOLDER="sift_vlfeat/."
+    else 
+        if [ "$FOLDER" = "3" ] ; then
+            FOLDER="open_surf/."
+        fi
+    fi
+fi
+ 
+cp -a $FOLDER .

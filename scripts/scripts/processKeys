@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#get the number of descriptors
+NUM=`wc -l $1 | awk '{print $1'}`
+
+#put it at the start of the file
+echo "$NUM 128" | cat - $1 > temp && mv temp $1
+
+#split the lines
+awk '{for(i=4;i<NF;i+=20){$i=$i RS};gsub(RS FS,RS,$0)}1' $1>temp && mv temp $1
